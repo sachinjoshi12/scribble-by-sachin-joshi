@@ -1,16 +1,20 @@
 import React from "react";
 
-import { AuthProvider } from "contexts/auth";
-import { UserProvider } from "contexts/user";
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
-// import Main from "./components/Main";
+import SignIn from "components/Authentication/SignIn";
+import PrivateRoute from "components/Common/PrivateRoute";
+import Home from "components/Home";
 
-const App = props => (
-  <AuthProvider>
-    <UserProvider>
-      <br />
-    </UserProvider>
-  </AuthProvider>
+const App = () => (
+  <Router>
+    <ToastContainer />
+    <Switch>
+      <Route exact path="/signin" component={SignIn} />
+      <PrivateRoute exact path="/" component={Home} />
+    </Switch>
+  </Router>
 );
 
 export default App;
